@@ -1,9 +1,9 @@
-<x-guest-layout>
+<x-guest-layout title="Login">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <div class="mb-12">
-        <h1 class="mb-3 text-3xl font-bold">Welcome back to <span class="text-primary">QueIT</span></h1>
+        <h1 class="mb-3 text-3xl font-bold">Welcome back to <span class="text-primary">{{ env('APP_NAME') }}</span></h1>
         <p class="text-gray-500">Silahkan login untuk melanjutkan.</p>
     </div>
 

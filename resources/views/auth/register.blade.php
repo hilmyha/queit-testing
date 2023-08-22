@@ -1,13 +1,20 @@
-<x-guest-layout>
+<x-guest-layout title="Register">
 
     <div class="mb-12">
-        <h1 class="mb-3 text-2xl xl:text-3xl font-bold whitespace-nowrap">Welcome to <span class="text-primary">Yuhdolan</span></h1>
+        <h1 class="mb-3 text-2xl xl:text-3xl font-bold whitespace-nowrap">Welcome to <span class="text-primary">{{ env('APP_NAME') }}</span></h1>
         <p class="text-gray-500">Silahkan registrasi sebagai user baru untuk melanjutkan.</p>
     </div>
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="grid gap-4">
+
+            <!-- Username -->
+            <div class="lg:col-span-2">
+                <x-input-label for="username" :value="__('Username')" />
+                <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
+                <x-input-error :messages="$errors->get('username')" class="mt-2" />
+            </div>
 
             <!-- Name -->
             <div class="lg:col-span-2">
@@ -21,13 +28,6 @@
                 <x-input-label for="email" :value="__('Email')" />
                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
-                
-            <!-- Username -->
-            <div class="lg:col-span-2">
-                <x-input-label for="username" :value="__('Username')" />
-                <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
-                <x-input-error :messages="$errors->get('username')" class="mt-2" />
             </div>
             
             <!-- Password -->

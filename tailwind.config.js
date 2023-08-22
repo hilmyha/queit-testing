@@ -7,8 +7,20 @@ export default {
     "./node_modules/flowbite/**/*.js"
   ],
   theme: {
-    extend: {},
-  },
+    container: {
+        center: true,
+        padding: '1rem',
+    },
+    extend: {
+        colors: {
+            primary: "#E33F20",
+            secondary: "#CC2C0E",
+        },
+        fontFamily: {
+            futura: ["Futura", "sans-serif"],
+        }
+    },
+},
   plugins: [
     require('flowbite/plugin')
   ],
