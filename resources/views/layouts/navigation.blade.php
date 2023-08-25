@@ -107,6 +107,7 @@
                     <span class="ml-3">Docs</span>
                     </a>
                 </li>
+                @if (Auth::user()->hasRole('admin'))
                 <li>
                     <a href="#" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900">
@@ -123,6 +124,8 @@
                     <span class="ml-3">Permission</span>
                     </a>
                 </li>
+                    
+                @endif
             
             </ul>
             
