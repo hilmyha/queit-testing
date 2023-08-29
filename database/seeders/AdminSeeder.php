@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
             'name' => 'Administrator',
             'email' => 'admin@queit.com',
             'password' => bcrypt('admin123'),
-        ])->assignRole('admin', 'department', 'user');
+        ])->assignRole('admin', 'agent', 'user');
         
         User::create([
             'username' => 'haidar',
