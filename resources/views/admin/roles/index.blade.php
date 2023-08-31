@@ -20,38 +20,43 @@
                             </a>
                         </div>
 
-                        
-                        <div class="relative overflow-x-auto px-4 pb-4">
-                            <table class="w-full text-sm text-left text-gray-500">
-                                <thead class="text-sm text-gray-700 uppercase bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3">
-                                            Name
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($roles as $role)
-                                        <tr class="bg-white border-b">
-                                            <td class="px-6 py-4 capitalize whitespace-nowrap">
-                                                {{ $role->name }}
-                                            </td>
-                                            <td class="px-6 py-4 text-end flex justify-end gap-2">
-                                                <a href="{{ route('admin.roles.edit', $role->id) }}" class="font-medium text-blue-600 hover:underline">Edit</a>
-                                                <form action="{{ route('admin.roles.destroy', $role->id) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="font-medium text-red-600 hover:underline">Delete</button>
-                                                </form>
-                                            </td>
+                        @if ($roles->count())
+                            <div class="relative overflow-x-auto px-4 pb-4">
+                                <table class="w-full text-sm text-left text-gray-500">
+                                    <thead class="text-sm text-gray-700 uppercase bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3">
+                                                Name
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                
+                                            </th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($roles as $role)
+                                            <tr class="bg-white border-b">
+                                                <td class="px-6 py-4 capitalize whitespace-nowrap">
+                                                    {{ $role->name }}
+                                                </td>
+                                                <td class="px-6 py-2 text-end flex justify-end gap-2">
+                                                    <a href="{{ route('admin.roles.edit', $role->id) }}" class="font-medium text-white px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-700 transition">Edit</a>
+                                                    <form action="{{ route('admin.roles.destroy', $role->id) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="font-medium text-white px-4 py-2 rounded-lg bg-red-500 hover:bg-red-700 transition">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <div class="px-4 pb-4">
+                                <p class="text-red-500">Roles list is empty</p>
+                            </div>
+                        @endif
 
                     </div>
                 </div>
