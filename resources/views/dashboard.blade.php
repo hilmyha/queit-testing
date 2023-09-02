@@ -62,8 +62,14 @@
             </div>
         </div>
         <div class="p-2 border-2 border-dashed rounded-lg border-gray-300 h-96 mb-4">
-            <div class="bg-white w-full h-full flex justify-center items-center rounded-lg">
-                
+            <div class="bg-white w-full h-full p-4 rounded-lg">
+                <h1>Departement</h1>
+
+                @foreach ($departements as $departement)
+                    @if ($departement->status == 1)
+                        <p>{{ $departement->name }}</p>
+                    @endif
+                @endforeach
             </div>
         </div>
         <div class="grid grid-cols-2 gap-4 mb-4">
