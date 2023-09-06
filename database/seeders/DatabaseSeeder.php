@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Departement;
+use App\Models\Status;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -30,6 +31,18 @@ class DatabaseSeeder extends Seeder
             'name' => 'Printing',
             'description' => 'Printing departement',
             'status' => true,
+        ]);
+
+        Status::create([
+            'name' => 'Pending',
+        ]);
+
+        Status::create([
+            'name' => 'On Progress',
+        ]);
+
+        Status::create([
+            'name' => 'Done',
         ]);
     }
 }

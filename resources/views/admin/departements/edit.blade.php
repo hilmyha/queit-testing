@@ -1,4 +1,4 @@
-<x-app-layout title="departements">
+<x-app-layout title="Departements">
     <main class="p-4 lg:ml-64 h-auto pt-5">
 
         <div class="p-2 border-2 border-dashed rounded-lg border-gray-300 mb-4">
@@ -8,7 +8,7 @@
                     @method('PUT')
                     <div class="grid gap-4">
                         <div class="w-full">
-                            <x-input-label for="name" value="departement Name" />
+                            <x-input-label for="name" value="Departement Name" />
                             <x-text-input id="name" name="name" type="text" value="{{ old('name', $departement->name) }}" placeholder="departement name" />
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Departement;
+use App\Models\Queue;
 use Illuminate\Http\Request;
 
 class DepartementController extends Controller
@@ -49,7 +50,10 @@ class DepartementController extends Controller
      */
     public function show(Departement $departement)
     {
-        //
+        return view('admin.departements.show', [
+            'departement' => $departement,
+            'queues' => Queue::where('departement_id', $departement->id)->latest()->get(),
+        ]);
     }
 
     /**

@@ -12,7 +12,13 @@
 
                     <div class="ml-4">
                         <p class="text-gray-500 font-semibold text-lg">Queue</p>
-                        <p class="text-gray-500 font-bold text-xl">10</p>
+                        <p class="text-gray-500 font-bold text-xl">
+                            @php
+                                $status = $statuses->where('name', 'Pending');
+                                $queue = $queues->where('status_id', $status->first()->id)->count();
+                            @endphp
+                            {{ $queue }}
+                        </p>
                     </div>
 
                 </div>
@@ -27,7 +33,14 @@
 
                     <div class="ml-4">
                         <p class="text-gray-500 font-semibold text-lg">Complete today</p>
-                        <p class="text-gray-500 font-bold text-xl">10</p>
+                        <p class="text-gray-500 font-bold text-xl">
+                            @php
+                                $today = Carbon\Carbon::today('Asia/Jakarta');
+                                $status = $statuses->where('id', 3);
+                                $complete = $queues->where('status_id', $status->first()->id)->where('updated_at', '>=', $today)->count();
+                            @endphp
+                            {{ $complete }}
+                        </p>
                     </div>
                     
                 </div>
@@ -41,7 +54,12 @@
 
                     <div class="ml-4">
                         <p class="text-gray-500 font-semibold text-lg">Total task complete</p>
-                        <p class="text-gray-500 font-bold text-xl">10</p>
+                        <p class="text-gray-500 font-bold text-xl">
+                            @php
+                                $complete = $queues->where('status_id', 3)->count();
+                            @endphp
+                            {{ $complete }}
+                        </p>
                     </div>
 
                 </div>
@@ -55,19 +73,31 @@
 
                     <div class="ml-4">
                         <p class="text-gray-500 font-semibold text-lg">Reviewing</p>
-                        <p class="text-gray-500 font-bold text-xl">10</p>
+                        <p class="text-gray-500 font-bold text-xl">
+                            @php
+                                // jika status pending dan on progress
+                                $status = $statuses->whereIn('name', ['Pending', 'On Progress']);
+                                $review = $queues->whereIn('status_id', $status->pluck('id'))->count();
+                            @endphp
+                            {{ $review }}
+                        </p>
                     </div>
 
                 </div>
             </div>
         </div>
         <div class="p-2 border-2 border-dashed rounded-lg border-gray-300 h-96 mb-4">
-            <div class="bg-white w-full h-full p-4 rounded-lg">
-                <h1>Departement</h1>
+            <div class="bg-white w-full h-full p-6 rounded-lg">
+                <h1 class="text-gray-500 font-semibold text-2xl mb-4">Departement active on {{ date("l") }}</h1>
 
                 @foreach ($departements as $departement)
                     @if ($departement->status == 1)
-                        <p>{{ $departement->name }}</p>
+                        <div class="flex items-center py-2 px-2 border-b">
+                            <svg class="w-6 h-6 mr-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                            </svg>
+                            <p class="text-gray-500 text-lg">{{ $departement->name }}</p>
+                        </div>
                     @endif
                 @endforeach
             </div>
